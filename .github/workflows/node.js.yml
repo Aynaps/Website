@@ -36,4 +36,4 @@ jobs:
         target-branch: gh-pages
         build_dir: build
       env:
-        GH_PAT: ${{ secrets.SUPER_SECRET_NAME }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
