@@ -31,11 +31,10 @@ jobs:
       run: |
         npm ci
         npm run build
-    - name: GitHub Pages
+    - name: Deploy
         uses: crazy-max/ghaction-github-pages@v2.6.0
         with:
           target-branch: gh-pages
           build_dir: build
         env:
-          GITHUB_TOKEN:
-          ${{ secrets.SUPER_SECRET_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SUPER_SECRET_NAME }}
