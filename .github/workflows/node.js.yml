@@ -20,11 +20,22 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run deploy --if-present
+    - name: Install and Build
+      run: |
+        npm ci
+        npm run build
+    - name: GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v2.6.0
+        with:
+          target-branch: gh-pages
+          build_dir: build
+        env:
+          GITHUB_TOKEN:
+          ${{ secrets.SUPER_SECRET_TOKEN }}
