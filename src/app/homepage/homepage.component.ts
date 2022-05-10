@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-homepage',
@@ -11,14 +11,19 @@ export class HomepageComponent implements OnInit {
   public showPepeDance:boolean = false;
   public showPepeStand:boolean = true;
   
-  public srcPepeDance:String = "./assets/pepeDance.gif";
-  public srcPepeStand:String = "./assets/Sad-Pepe-The-Frog-Transparent-Background.png";
-  public song = new Audio();
-  public isSongPlaying = false;
+  private srcPepeDance:String = "./assets/pepeDance.gif";
+  private srcPepeStand:String = "./assets/Sad-Pepe-The-Frog-Transparent-Background.png";
+  private song = new Audio();
+  private isSongPlaying = false;
 
   ngOnInit(): void {
   }
-
+  ngOnDestroy(): void {
+    this.song.pause()
+    this.song.currentTime = 0;
+    this.isSongPlaying = false;
+    this.showPepeDance = false;
+  }
   jammerTime(){
     this.showPepeDance = !this.showPepeDance;
     this.showPepeStand = !this.showPepeStand;
@@ -36,6 +41,7 @@ export class HomepageComponent implements OnInit {
     //song is already playing so stop it
     else{
       this.song.pause();
+      this.song.currentTime = 0;
       this.isSongPlaying = false;
     }
   }
