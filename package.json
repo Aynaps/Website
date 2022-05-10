@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --base-href `https://aynaps.github.io/Website/` ",
+    "build": "ng build --base-href `/myWeb/` ",
     "test": "ng test --browsers=ChromeHeadless --watch=false --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
